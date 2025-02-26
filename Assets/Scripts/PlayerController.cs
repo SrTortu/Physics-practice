@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     #region Fields
 
-    private Rigidbody playerRigidbody;
-    private Vector3 movementVector;
+    private Rigidbody _playerRigidbody;
+    private Vector3 _movementVector;
 
     public float playerSpeed;
 
@@ -18,18 +18,18 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        playerRigidbody = GetComponent<Rigidbody>();
+        _playerRigidbody = GetComponent<Rigidbody>();
     }
     private void Update()
     {
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
-        movementVector = new Vector3(moveX, 0, moveZ).normalized;
+        _movementVector = new Vector3(moveX, 0, moveZ).normalized;
     }   
 
     private void FixedUpdate()
     {
-        playerRigidbody.AddForce(movementVector * playerSpeed,ForceMode.Force);
+        _playerRigidbody.AddForce(_movementVector * playerSpeed,ForceMode.Force);
     }
 
     #endregion

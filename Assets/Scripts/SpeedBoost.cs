@@ -7,15 +7,17 @@ public class SpeedBoost : MonoBehaviour
 {
     #region Fields
 
-    private Rigidbody playerRigidbody;
+    private Rigidbody _playerRigidbody;
 
     public float speedBoostValue;
 
     #endregion
 
+    #region Unity Callbacks
+
     private void Awake()
     {
-        playerRigidbody = GetComponent<Rigidbody>();
+        _playerRigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -23,7 +25,9 @@ public class SpeedBoost : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            playerRigidbody.AddForce(Vector3.forward * speedBoostValue);
+            _playerRigidbody.AddForce(Vector3.forward * speedBoostValue);
         }
     }
+
+    #endregion
 }
