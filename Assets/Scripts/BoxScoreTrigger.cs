@@ -9,6 +9,7 @@ public class BoxScoreTrigger : MonoBehaviour
 
     private bool _hasFallen;
     private Rigidbody _boxRigidBody;
+    private float _timer;
 
     #endregion
 
@@ -20,6 +21,7 @@ public class BoxScoreTrigger : MonoBehaviour
         _boxRigidBody = GetComponent<Rigidbody>();
     }
 
+
     private void OnCollisionEnter(Collision collision)
     {
         if ((collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Player"))
@@ -27,9 +29,8 @@ public class BoxScoreTrigger : MonoBehaviour
         {
             _hasFallen = true;
             GameManager.gameManagerInstance.AddScore();
+            Debug.Log("Box Score Trigger");
         }
-
-        print(_boxRigidBody.velocity.magnitude);
     }
 
     #endregion
