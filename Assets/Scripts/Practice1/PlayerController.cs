@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     #region Fields
 
+    private Jump _jump;
     private Rigidbody _playerRigidbody;
     private Vector3 _movementVector;
 
@@ -19,17 +20,28 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _playerRigidbody = GetComponent<Rigidbody>();
+        TryGetComponent<Jump>(out _jump);
     }
+
     private void Update()
     {
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
         _movementVector = new Vector3(moveX, 0, moveZ).normalized;
-    }   
+    }
 
     private void FixedUpdate()
-    {
-        _playerRigidbody.AddForce(_movementVector * playerSpeed,ForceMode.Force);
+    {   
+        _playerRigidbody.AddForce(_movementVector * playerSpeed, ForceMode.Force);
+        
+        if (Input.GetKey(KeyCode.Space))
+        {
+            if (_jump != null)
+            {
+                _jump.makeJump();
+            }
+            
+        }
     }
 
     #endregion
