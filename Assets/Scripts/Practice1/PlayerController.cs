@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     #region Fields
 
+    [SerializeField] private float fallMultiplier;
+
     private bool _shouldJump;
     private Jump _jump;
     private PlayerColisionController _playerCollisionController;
@@ -32,7 +34,7 @@ public class PlayerController : MonoBehaviour
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
         _movementVector = new Vector3(moveX, 0, moveZ).normalized;
-        
+
         if (_jump != null && _playerCollisionController != null)
         {
             if (Input.GetKeyDown(KeyCode.Space) && _playerCollisionController.isGrounded)
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
                 _shouldJump = true;
             }
         }
+        
     }
 
     private void FixedUpdate()
@@ -50,6 +53,19 @@ public class PlayerController : MonoBehaviour
         {
             _jump.makeJump();
             _shouldJump = false;
+        }
+        IncreaseFallStrengh();
+    }
+
+    #endregion
+
+    #region Methods
+
+    private void IncreaseFallStrengh()
+    {
+        if (_playerRigidbody.velocity.y < 0)
+        {
+            _playerRigidbody.velocity += Vector3.up * (Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime);
         }
     }
 

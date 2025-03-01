@@ -18,7 +18,7 @@ public class PlatformMobile : MonoBehaviour
     #endregion
     #region Fields
 
-    private const float MOVE_DISTANCE = 10f;
+    private const float MOVE_DISTANCE = 3f;
 
     [SerializeField] private float _moveSpeed;
     [SerializeField] private MoveDirections _moveDirection;
