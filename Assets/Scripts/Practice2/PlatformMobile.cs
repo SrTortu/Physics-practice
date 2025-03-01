@@ -44,7 +44,7 @@ public class PlatformMobile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _platformRigidbody.MovePosition(Vector3.MoveTowards(transform.position, _targetPoint, _moveSpeed)); 
+        transform.position = Vector3.MoveTowards(transform.position, _targetPoint, _moveSpeed ); 
         if (Vector3.Distance(transform.position, _targetPoint) < 0.1f)
         {
             _targetPoint = _targetPoint == _pointRight ? _pointLeft : _pointRight;
