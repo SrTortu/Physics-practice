@@ -32,6 +32,7 @@ public class PlayerColisionController : MonoBehaviour
                 _pivotParent.transform.SetParent(other.transform, true);
                 _pivotParent.transform.position = transform.position;
                 transform.SetParent(_pivotParent.transform, true);
+                GameManagerPractice2.gameManagerInstance.AddVisitedPlatform(other.gameObject.GetInstanceID());
             }
 
             isGrounded = true;
@@ -50,4 +51,3 @@ public class PlayerColisionController : MonoBehaviour
 
     #endregion
 }
-

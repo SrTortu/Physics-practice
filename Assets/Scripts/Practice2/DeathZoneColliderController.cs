@@ -12,6 +12,8 @@ public class DeadZoneColliderController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameManagerPractice2.gameManagerInstance.RespawnPlayer(other.gameObject, other.GetComponent<Rigidbody>());
+            GameManagerPractice2.gameManagerInstance.AddDeathPoint();
+            GameManagerPractice2.gameManagerInstance.ResetVisitedPlatforms();
         }
     }
 
