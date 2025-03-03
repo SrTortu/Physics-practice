@@ -16,6 +16,7 @@ public class PlatformMobile : MonoBehaviour
     }
 
     #endregion
+
     #region Fields
 
     private const float MOVE_DISTANCE = 3f;
@@ -23,7 +24,6 @@ public class PlatformMobile : MonoBehaviour
     [SerializeField] private float _moveSpeed;
     [SerializeField] private MoveDirections _moveDirection;
 
-    private Rigidbody _platformRigidbody;
     private Vector3 _pointLeft;
     private Vector3 _pointRight;
     private Vector3 _targetPoint;
@@ -34,7 +34,6 @@ public class PlatformMobile : MonoBehaviour
 
     private void Awake()
     {
-        _platformRigidbody = GetComponent<Rigidbody>();
         _pointLeft = new Vector3(this.transform.position.x - MOVE_DISTANCE, this.transform.position.y,
             this.transform.position.z);
         _pointRight = new Vector3(this.transform.position.x + MOVE_DISTANCE, this.transform.position.y,
@@ -44,7 +43,7 @@ public class PlatformMobile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _targetPoint, _moveSpeed ); 
+        transform.position = Vector3.MoveTowards(transform.position, _targetPoint, _moveSpeed);
         if (Vector3.Distance(transform.position, _targetPoint) < 0.1f)
         {
             _targetPoint = _targetPoint == _pointRight ? _pointLeft : _pointRight;

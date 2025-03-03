@@ -42,7 +42,6 @@ public class PlayerController : MonoBehaviour
                 _shouldJump = true;
             }
         }
-        
     }
 
     private void FixedUpdate()
@@ -54,6 +53,7 @@ public class PlayerController : MonoBehaviour
             _jump.makeJump();
             _shouldJump = false;
         }
+
         IncreaseFallStrengh();
     }
 
